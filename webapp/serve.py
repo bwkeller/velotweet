@@ -1,19 +1,19 @@
 #!/usr/bin/python
 from flask import Flask, render_template, url_for
-import random
+import random #DEMO
 import os
 from twitter import *
 app = Flask(__name__)
 MY_TWITTER_CREDS = os.path.expanduser('~/.velotweet_oauth')
 
 def grab_power():
-	return random.randint(0,500)
+	return random.randint(0,500) #DEMO
 
 def grab_speed():
-	return random.randint(0,50)
+	return random.randint(0,50) #DEMO
 
 def grab_distance():
-	return random.randint(0,500)
+	return random.randint(0,500) #DEMO
 
 def munge_statuses(status):
 	return {'user':status['user']['screen_name'], 'text':status['text']}
@@ -37,5 +37,5 @@ def render_wall():
 			distance=grab_distance(), event="#HIVEX")
 
 if __name__ == "__main__":
-	random.seed()
+	random.seed() #DEMO
 	app.run(debug=True)

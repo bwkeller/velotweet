@@ -21,6 +21,7 @@ h2 {
 
 .header {
 	text-align: center;
+	vertical-align: top;
 	font-size: 60px;
 }
 
@@ -29,4 +30,10 @@ h2 {
 	background:#2F2929;
 	border-radius: 5px;
 	font-size: 40px;
+}
+
+.tweets{
+	text-align: left;
+	background:#333030;
+	border-radius: 5px;
 }
