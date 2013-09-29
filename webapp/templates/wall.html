@@ -2,9 +2,21 @@
 <html>
 	<head>
 		<title>Velotweet</title>
-		<link rel="stylesheet" href="{{ css }}">
+		<script src="http://yui.yahooapis.com/3.12.0/build/yui/yui-min.js"></script>
+		<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Droid+Sans:400,700">
+		<link rel="stylesheet" href="{{ static.css }}">
 	</head>
 	<body>
-		Hello Wahrld.
+		<div class="header">
+			<img src="{{ static.thaat }}" width=200, height=130, alt="thaat">
+			Velotweet@{{ event }}
+			<img src="{{ static.thinkhaus}}" width=120, height=130, alt="thaat">
+		</div>
+		<div class="main">
+			main
+		</div>
+		<div class="sidebar">
+			sidebar
+		</div>
 	</body>
 </html>

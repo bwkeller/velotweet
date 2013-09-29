@@ -15,9 +15,13 @@ def get_tweets(hashtags):
 @app.route('/')
 def render_wall():
 	tags = []
+	staticurls = {'css':url_for('static', filename='wall.css'),
+			'thaat':url_for('static', filename='thaat.png'),
+			'thinkhaus':url_for('static', filename='thinkhaus.png')}
 	return render_template('wall.html', 
-			css=url_for('static', filename='wall.css'), rpm=grab_rpm(), 
-			power=grab_power(), tweets=get_tweets(tags))
+			static=staticurls, rpm=grab_rpm(), 
+			power=grab_power(), tweets=get_tweets(tags),
+			event="#HIVEX")
 
 if __name__ == "__main__":
 	app.run(debug=True)
