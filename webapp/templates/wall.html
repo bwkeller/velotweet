@@ -3,20 +3,48 @@
 	<head>
 		<title>Velotweet</title>
 		<script src="http://yui.yahooapis.com/3.12.0/build/yui/yui-min.js"></script>
+		<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.12.0/build/cssgrids/cssgrids-min.css">
 		<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Droid+Sans:400,700">
 		<link rel="stylesheet" href="{{ static.css }}">
+		<meta http-equiv="refresh" content="5">
 	</head>
 	<body>
-		<div class="header">
-			<img src="{{ static.thaat }}" width=200, height=130, alt="thaat">
-			Velotweet@{{ event }}
-			<img src="{{ static.thinkhaus}}" width=120, height=130, alt="thaat">
+		<div class="yui3-g">
+			<div class="yui3-u-1">
+				<div class="content">
+					<div class="header">
+						<img src="{{ static.thaat }}" width=200, height=130, alt="thaat">
+						Velotweet@{{ event }}
+						<img src="{{ static.thinkhaus}}" width=120, height=130, alt="thaat">
+					</div>
+				</div>
+			</div>
 		</div>
-		<div class="main">
-			main
-		</div>
-		<div class="sidebar">
-			sidebar
+		<div class="yui3-g">
+			<div class="yui3-u-3-4">
+				<div class="content">
+					<h2>Tweets about {{ event }}</h2>
+					{% for t in tweets %}
+					<p>{{ t.user }} said {{ t.text }}</p>
+					{% endfor %}
+				</div>
+			</div>
+			<div class="yui3-u-1-4">
+				<div class="content">
+					<h2>Speed</h2>
+					<div class="number">
+						{{ speed }} km/h
+					</div>
+					<h2>Power Output</h2>
+					<div class="number">
+						{{ power }} W
+					</div>
+					<h2>Distance</h2>
+					<div class="number">
+						{{ distance }} m
+					</div>
+				</div>
+			</div>
 		</div>
 	</body>
 </html>

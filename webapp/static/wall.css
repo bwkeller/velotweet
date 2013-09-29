@@ -6,32 +6,27 @@ html {
 	font-size: 20px;
 	background:#333030;
 }
-body {
-	display: grid;
-	grid-columns: 800px 20px 200px;
-	grid-rows: 200px 1% 1fr;
-}
-.header {
-	grid-column-span: 3;
-	grid-row: 1;
+
+h2 {
 	text-align: center;
-	font-size: 60px;
-	background: #474444;
-	padding:20px;
-	border-radius:5px;
-}
-.main {
-	grid-column: 1;
-	grid-row: 3;
-	background: #474444;
-	padding:20px;
-	border-radius:5px;
 }
 
-.sidebar{
-	grid-column: 3;
-	grid-row: 3;
-	background: #474444;
-	padding:20px;
-	border-radius:5px;
+.yui3-g .content {
+	margin-right:10px; /* "column" gutters */
+	margin-top:10px; /* "row" gutters */
+	border-radius: 5px;
+	background:#474444;
+	padding: 10px;
+}
+
+.header {
+	text-align: center;
+	font-size: 60px;
+}
+
+.number{
+	text-align: center;
+	background:#2F2929;
+	border-radius: 5px;
+	font-size: 40px;
 }
