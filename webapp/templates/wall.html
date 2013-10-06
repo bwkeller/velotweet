@@ -27,14 +27,14 @@
 			<!--Main tweet display-->
 			<div class="yui3-u-3-4">
 				<div class="content">
-					<h2>Tweets about {{ event }}</h2>
-					<div class="tweets">
+					<h1>Tweets about {{ event }}</h1>
 						<!--Loop through the tweets and display what the 
 						is said by whom.-->
 						{% for t in tweets %}
-						<p>{{ t.user }} said {{ t.text }}</p>
+							<div class="tweets">
+								<p><i>@{{ t.user }}:</i> {{ t.text }}</p>
+							</div>
 						{% endfor %}
-					</div>
 				</div>
 			</div>
 			<div class="yui3-u-1-4">
