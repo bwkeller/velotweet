@@ -1,7 +1,9 @@
+<!--This is the jinja2 template'd html for the velotweet banner-->
 <!DOCTYPE html>
 <html>
 	<head>
 		<title>Velotweet</title>
+		<!--I need these scripts for custom fonts and for the simple YUI grid layout-->
 		<script src="http://yui.yahooapis.com/3.12.0/build/yui/yui-min.js"></script>
 		<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.12.0/build/cssgrids/cssgrids-min.css">
 		<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Droid+Sans:400,700">
@@ -10,6 +12,7 @@
 	</head>
 	<body>
 		<div class="yui3-g">
+			<!--Header Bar-->
 			<div class="yui3-u-1">
 				<div class="content">
 					<div class="header">
@@ -21,10 +24,13 @@
 			</div>
 		</div>
 		<div class="yui3-g">
+			<!--Main tweet display-->
 			<div class="yui3-u-3-4">
 				<div class="content">
 					<h2>Tweets about {{ event }}</h2>
 					<div class="tweets">
+						<!--Loop through the tweets and display what the 
+						is said by whom.-->
 						{% for t in tweets %}
 						<p>{{ t.user }} said {{ t.text }}</p>
 						{% endfor %}
@@ -32,6 +38,7 @@
 				</div>
 			</div>
 			<div class="yui3-u-1-4">
+				<!--Side bar with rider stats-->
 				<div class="content">
 					<h2>Speed</h2>
 					<div class="number">
