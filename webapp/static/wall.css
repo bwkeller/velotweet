@@ -32,6 +32,10 @@ h1,h2 {
 	font-size: 40px;
 }
 
+.twimg{
+	text-align: center;
+}
+
 .tweets{
 	text-align: left;
 	background:#333030;

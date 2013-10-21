@@ -13,7 +13,7 @@
 	<body>
 		<div class="yui3-g">
 			<!--Header Bar-->
-			<div class="yui3-u-1">
+			<div class="yui3-u-3-4">
 				<div class="content">
 					<div class="header">
 						<img src="{{ static.thaat }}" width=200, height=130, alt="thaat">
@@ -21,11 +21,7 @@
 						<img src="{{ static.thinkhaus}}" width=120, height=130, alt="thaat">
 					</div>
 				</div>
-			</div>
-		</div>
-		<div class="yui3-g">
-			<!--Main tweet display-->
-			<div class="yui3-u-3-4">
+				<!--Main tweet display-->
 				<div class="content">
 					<h1>Tweets about {{ event }}</h1>
 						<!--Loop through the tweets and display what the 
@@ -51,6 +47,10 @@
 					<h2>Distance</h2>
 					<div class="number">
 						{{ distance }} m
+					</div>
+					<h2>Latest Image</h2>
+					<div class='twimg'>
+						<img src={{ twimg }} width=256 height=192>
 					</div>
 				</div>
 			</div>
