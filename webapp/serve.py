@@ -1,10 +1,25 @@
 #!/usr/bin/python
 from flask import Flask, render_template, url_for
+from datetime import timedelta, datetime
 import random #DEMO
+import RPi.GPI as GPIO
 import os
 from twitter import *
 app = Flask(__name__)
+rotations = 0l
+RES = 10 #The number of rotations to smooth the time measurement over
+t_per_RES = 0 #The time to make the last RES rotations (in hours)
+lasttime = datetime(1988, 8, 29)
+PIN = 14 #Use GPIO pin 14 by default.
+CIRCUMFRENCE = 2e-3
 MY_TWITTER_CREDS = os.path.expanduser('~/.velotweet_oauth')
+
+def count_rotation():
+	rotations += 1
+	if rotations % RES == 0:
+		d = datetime.now()-lasttime
+		lasttime = datetime.now()
+		t_per_RES = d.total_seconds()/3600.
 
 def grab_power():
 	'''
@@ -12,7 +27,7 @@ def grab_power():
 	@rtype:			number
 	@return:		power output in W
 	'''
-	return random.randint(0,500) #DEMO, Fake data
+	return RESISTANCE*grab_speed()*0.2778 #Convert km/h -> m/s
 
 def grab_speed():
 	'''
@@ -20,7 +35,7 @@ def grab_speed():
 	@rtype:			number
 	@return:		speed in km/h
 	'''
-	return random.randint(0,50) #DEMO
+	return RES*rotations/t_per_RES
 
 def grab_distance():
 	'''
@@ -28,7 +43,7 @@ def grab_distance():
 	@rtype:			number
 	@return:		distance in km
 	'''
-	return random.randint(0,500) #DEMO
+	return rotations*CIRCUMFRENCE
 
 def munge_statuses(status):
 	'''
@@ -67,5 +82,12 @@ def render_wall():
 			distance=grab_distance(), event="#HIVEX")
 
 if __name__ == "__main__":
+	#Start the timing
+	lasttime = datetime.now()
+	GPIO.setmode(GPIO.BOARD)
+	GPIO.setup(PIN, GPIO.IN) 
+	#Intialize the callback function
+	GPIO.add_event_detect(PIN, GPIO.RISING)
+	GPIO.add_event_callback(PIN, count_rotation)
 	random.seed() #DEMO needs random data for now...
 	app.run(debug=True)
