@@ -70,6 +70,28 @@ def get_tweets(tags):
 	tweets = twitter.search.tweets(q=tags, count=5, result_type='recent')
 	return [munge_statuses(status) for status in tweets['statuses']]
 
+def get_img(tags):
+	'''
+	Search twitter for tweets that include any values in the list hashtags.
+	@type tags:		string
+	@param tags:	The hashtags to search for, separated by spaces
+	@rtype:			dict
+	@return:		username & text dictionary
+	'''
+	oauth_token, oauth_secret = read_token_file(MY_TWITTER_CREDS)
+	twitter = Twitter(auth=OAuth(oauth_token, oauth_secret,
+	"pnOTHwklWj75l45HSF650g", "JyWoD0TgqE7ocSGlXNdHdKSpSmfijWS5LnikvVY"))
+	tweets = twitter.search.tweets(q=tags, count=5, result_type='recent')
+	img_url = ""
+	count = 0
+	while len(img_url) == 0 and count < len(tweets['statuses']):
+		try:
+			for entity in tweets['statuses'][count]['entities']['media']:
+				img_url = entity['media_url']
+		except LookupError:
+			count += 1
+	return img_url
+
 @app.route('/')
 def render_wall():
 	hashtags = "@THAATCoop" #Probably should read this from a config file...
@@ -78,8 +100,8 @@ def render_wall():
 			'thinkhaus':url_for('static', filename='thinkhaus.png')}
 	return render_template('wall.html', 
 			static=staticurls, speed=grab_speed(), 
-			power=grab_power(), tweets=get_tweets(hashtags),
-			distance=grab_distance(), event="#HIVEX")
+			power=grab_power(), tweets=get_tweets(hashtags), 
+			twimg=get_img(hashtags), distance=grab_distance(), event="#HIVEX")
 
 if __name__ == "__main__":
 	#Start the timing
