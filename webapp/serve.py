@@ -2,7 +2,7 @@
 from flask import Flask, render_template, url_for
 from datetime import timedelta, datetime
 import random #DEMO
-import RPi.GPI as GPIO
+import RPi.GPIO as GPIO
 import os
 from twitter import *
 app = Flask(__name__)
@@ -84,7 +84,7 @@ def render_wall():
 if __name__ == "__main__":
 	#Start the timing
 	lasttime = datetime.now()
-	GPIO.setmode(GPIO.BOARD)
+	GPIO.setmode(GPIO.BCM)
 	GPIO.setup(PIN, GPIO.IN) 
 	#Intialize the callback function
 	GPIO.add_event_detect(PIN, GPIO.RISING)
