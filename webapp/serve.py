@@ -1,17 +1,17 @@
 #!/usr/bin/python
 from flask import Flask, render_template, url_for
 from datetime import timedelta, datetime
-import random #DEMO
 import RPi.GPIO as GPIO
 import os
 from twitter import *
 app = Flask(__name__)
 rotations = 0l
 RES = 10 #The number of rotations to smooth the time measurement over
-t_per_RES = 0 #The time to make the last RES rotations (in hours)
+t_per_RES = 1 #The time to make the last RES rotations (in hours)
 lasttime = datetime(1988, 8, 29)
 PIN = 14 #Use GPIO pin 14 by default.
-CIRCUMFRENCE = 2e-3
+CIRCUMFRENCE = 2e-3#Distance per rotation in km
+RESISTANCE = 1#Motor resistance in Newtons
 MY_TWITTER_CREDS = os.path.expanduser('~/.velotweet_oauth')
 
 def count_rotation():
@@ -111,5 +111,4 @@ if __name__ == "__main__":
 	#Intialize the callback function
 	GPIO.add_event_detect(PIN, GPIO.RISING)
 	GPIO.add_event_callback(PIN, count_rotation)
-	random.seed() #DEMO needs random data for now...
 	app.run(debug=True)
